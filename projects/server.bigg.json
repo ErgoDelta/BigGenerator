@@ -1,0 +1,11 @@
+{
+  "rest_api": "server",
+  "directory": "NodeJS",
+  "templates": {
+    "api/index" : {},
+    "api/object" : {},
+    "api/object_controller" : {},
+    "api/object_model" : {},
+    "api/object_socket" : {}
+  }
+}

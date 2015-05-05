@@ -1,0 +1,45 @@
+/*
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+  COPYRIGHT GOES HERE @ YEAR
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+*/
+
+'use strict';
+
+/*
+  DOC COMMENTS GO HERE
+*/
+
+angular
+  .module('${module_name}')
+  .config(['$stateProvider',
+    function ($stateProvider) {
+      $stateProvider
+        .state('${object_name}.create', {
+          url: '/${object_name}/create',
+          templateUrl: 'app/${module_name}/${object_name}-create.html',
+          controller: '${object_name}.create.ctrl'
+        })
+        .state('${object_name}.update', {
+          url: '/${object_name}/update',
+          templateUrl: 'app/${module_name}/${object_name}-update.html',
+          controller: '${object_name}.update.ctrl'
+        })
+        .state('gameDelete', {
+          url: '/${object_name}/:id/delete',
+          templateUrl: 'app/${module_name}/${object_name}-delete.html',
+          controller: '${object_name}.delete.ctrl',
+          authenticate: true
+        })
+        .state('gameView', {
+          url: '/${object_name}/:id/details',
+          templateUrl: 'app/${module_name}/${object_name}-details.html',
+          controller: '${object_name}.details.ctrl'
+        })
+        .state('gameMove', {
+          url: '/${object_name}/:id/list',
+          templateUrl: 'app/${module_name}/${object_name}-list.html',
+          controller: '${object_name}.list.ctrl'
+        });
+    }]
+  );

@@ -1,0 +1,30 @@
+/*
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+  COPYRIGHT GOES HERE @ YEAR
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+*/
+
+'use strict';
+
+/**
+ * Populate DB with sample data on server start
+ * to disable, edit config/environment/index.js, and set `seedDB: false`
+ */
+
+/*
+  DOC COMMENTS GO HERE
+*/
+
+var ${object_name} = require('../api/${object_name}/${object_name}.model');
+
+${object_name}.
+  find({}).
+  remove(function() {
+    User.create({
+        TODO : 'Need to fill out expected fields and data'
+      },
+      function() {
+        console.log('finished populating ${object_name}');
+      }
+    );
+  });
