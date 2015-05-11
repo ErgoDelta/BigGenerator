@@ -6,49 +6,10 @@ from util.generator import Generator
 import argparse
 import logging
 import os
-import json
 # endregion
 
 # region Variables
 __args = None
-# endregion
-
-
-# region Helper Functions
-def _get_template():
-    logging.debug('BigG :: _get_template')
-
-
-def _get_project():
-    logging.debug('BigG :: _get_project')
-
-
-def _read_project():
-    logging.debug('BigG :: _read_project')
-
-
-def _build_project():
-    logging.debug('BigG :: _build_project')
-# endregion
-
-
-# region main()
-def main(args=None):
-    global _args
-    _args = args
-    #print(_args) # TODO : DELTEME
-
-    # configure the logger
-    logging.basicConfig(filename=_args.log_file,
-                        level=_args.log_level.value)
-    logging.debug('BigG :: Start')
-    logging.debug('BigG :: PWD : ' +
-        os.getcwd())
-    logging.debug('BigG :: SCRIPT_LOCATION : ' +
-        os.path.dirname(os.path.abspath(__file__)))
-    generator = Generator(project_file=_args.big_g_project_file)
-    generator.generate()
-    logging.debug('BigG :: End')
 # endregion
 
 
@@ -62,6 +23,27 @@ class LogLevel(Enum):
     NOTSET = logging.NOTSET
 # endregion
 
+
+# region main()
+def main(args=None):
+    global __args
+    __args = args
+
+    # configure the logger
+    logging.basicConfig(filename=__args.log_file,
+                        level=__args.log_level.value)
+    logging.debug('BigG :: Start')
+    logging.debug('BigG :: PWD : ' +
+                  os.getcwd())
+    logging.debug('BigG :: SCRIPT_LOCATION : ' +
+                  os.path.dirname(os.path.abspath(__file__)))
+
+    generator = Generator(swagger_file=__args.swagger_file)
+    generator.generate()
+
+    logging.debug('BigG :: End')
+# endregion
+
 if __name__ == "__main__":
     description = u'''
     This is an attempt to build a code generator using Python's MAKO framework.
@@ -71,9 +53,9 @@ APIs.
 
     parser = argparse.ArgumentParser(description=description)
 
-    parser.add_argument('--big_g_project_file',
-                        help='This is used to tell BigG to generate a given project.' +
-                        '  See help docs on BIG_G_PROJECT_FILES for more information')
+    parser.add_argument('--swagger_file',
+                        help='This is used to tell BigG to generate all templates in the current ' +
+                        'directory using the given swagger spi file')
 
     parser.add_argument('--log_file',
                         default='./logs/BigG.log',
